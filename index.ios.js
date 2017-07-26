@@ -21,8 +21,8 @@ Mapbox.setAccessToken(accessToken);
 export default class simpleDirections extends Component {
   state = {
     center: {
-      latitude: 40.74052634,
-      longitude: -73.97686958312988
+      latitude: 60.162059,
+      longitude: 24.94
     },
     zoom: 12,
     userTrackingMode: Mapbox.userTrackingMode.none,
@@ -115,8 +115,9 @@ export default class simpleDirections extends Component {
   }
 
   getDirections = () => {
-    console.log('painoin');
-    fetch('https://api.mapbox.com/directions/v5/mapbox/driving/-73.96820068359375%2C40.749857912194386%3B-74%2C40.733.json?access_token=pk.eyJ1IjoiaGVucmlrcmEiLCJhIjoiY2o1a3czMjA1MDlzejJwbXhpam1oMTJpMSJ9.TANJvIveftY7gEV8Um3Aew&geometries=geojson')
+    const from = {latitude: 60.162059, longitude: 24.94};
+    const to = {latitude: 60.152059, longitude: 24.92};
+    fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${from.longitude}%2C${from.latitude}%3B${to.longitude}%2C${to.latitude}.json?access_token=pk.eyJ1IjoiaGVucmlrcmEiLCJhIjoiY2o1a3czMjA1MDlzejJwbXhpam1oMTJpMSJ9.TANJvIveftY7gEV8Um3Aew&geometries=geojson`)
       .then((response) => response.json())
       .then(res => {
         console.log('res', res.routes[0].geometry.coordinates);
@@ -137,6 +138,7 @@ export default class simpleDirections extends Component {
   }
 
   componentDidMount() {
+    this.getDirections();
   }
 
   componentWillUnmount() {
