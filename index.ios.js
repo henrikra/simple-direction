@@ -130,7 +130,13 @@ export default class simpleDirections extends Component {
               id: 'new-black-polygon',
               strokeWidth: 3,
               strokeColor: '#FF0000',
-            }
+            },
+            {
+              coordinates: [60.162059, 24.94],
+              type: 'point',
+              title: 'This is a the lol marker',
+              id: 'foo'
+            }, 
           ]
         });
       })
