@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -26,53 +20,7 @@ export default class simpleDirections extends Component {
     },
     zoom: 12,
     userTrackingMode: Mapbox.userTrackingMode.none,
-    annotations: [
-      // {
-      //   coordinates: [40.72052634, -73.97686958312988],
-      //   type: 'point',
-      //   title: 'This is marker 1',
-      //   subtitle: 'It has a rightCalloutAccessory too',
-      //   rightCalloutAccessory: {
-      //     source: { uri: 'https://cldup.com/9Lp0EaBw5s.png' },
-      //     height: 25,
-      //     width: 25
-      //   },
-      //   annotationImage: {
-      //     source: { uri: 'https://cldup.com/CnRLZem9k9.png' },
-      //     height: 25,
-      //     width: 25
-      //   },
-      //   id: 'marker1'
-      // }, 
-      // {
-      //   coordinates: [40.714541341726175,-74.00579452514648],
-      //   type: 'point',
-      //   title: 'Important!',
-      //   subtitle: 'Neat, this is a custom annotation image',
-      //   annotationImage: {
-      //     source: { uri: 'https://cldup.com/7NLZklp8zS.png' },
-      //     height: 25,
-      //     width: 25
-      //   },
-      //   id: 'marker2'
-      // }, 
-      // {
-      //   coordinates: [[40.76572150042782,-73.99429321289062],[40.743485405490695, -74.00218963623047],[40.728266950429735,-74.00218963623047],[40.728266950429735,-73.99154663085938],[40.73633186448861,-73.98983001708984],[40.74465591168391,-73.98914337158203],[40.749337730454826,-73.9870834350586]],
-      //   type: 'polyline',
-      //   strokeColor: '#00FB00',
-      //   strokeWidth: 4,
-      //   strokeAlpha: .5,
-      //   id: 'foobar'
-      // }, 
-      // {
-      //   coordinates: [[40.749857912194386, -73.96820068359375], [40.741924698522055,-73.9735221862793], [40.735681504432264,-73.97523880004883], [40.7315190495212,-73.97438049316406], [40.729177554196376,-73.97180557250975], [40.72345355209305,-73.97438049316406], [40.719290332250544,-73.97455215454102], [40.71369559554873,-73.97729873657227], [40.71200407096382,-73.97850036621094], [40.71031250340588,-73.98691177368163], [40.71031250340588,-73.99154663085938]],
-      //   type: 'polygon',
-      //   fillAlpha: 1,
-      //   strokeColor: '#ffffff',
-      //   fillColor: '#0000ff',
-      //   id: 'zap'
-      // }
-    ]
+    annotations: []
   };
 
   onRegionDidChange = (location) => {
@@ -152,44 +100,6 @@ export default class simpleDirections extends Component {
     this._offlineMaxTilesSubscription.remove();
     this._offlineErrorSubscription.remove();
   }
-
-  addNewMarkers = () => {
-    this.getDirections();
-    // Treat annotations as immutable and create a new one instead of using .push()
-    // this.setState({
-    //   annotations: [ 
-    //     ...this.state.annotations, 
-    //     // {
-    //     //   coordinates: [40.73312,-73.989],
-    //     //   type: 'point',
-    //     //   title: 'This is a the lol marker',
-    //     //   id: 'foo'
-    //     // }, 
-    //     {
-    //       'coordinates': [
-    //         [40.749857912194386, -73.96820068359375], 
-    //         [40.741924698522055,-73.9735221862793], 
-    //         [40.735681504432264,-73.97523880004883], 
-    //         [40.7315190495212,-73.97438049316406], 
-    //         [40.729177554196376,-73.97180557250975], 
-    //         [40.72345355209305,-73.97438049316406], 
-    //         [40.719290332250544,-73.97455215454102], 
-    //         [40.71369559554873,-73.97729873657227], 
-    //         [40.71200407096382,-73.97850036621094], 
-    //         [40.71031250340588,-73.98691177368163], 
-    //         [40.71031250340588,-73.99154663085938],
-    //       ],
-    //       'type': 'polygon',
-    //       // 'fillAlpha': 1,
-    //       // 'fillColor': '#ffffff',
-    //       'strokeAlpha': 1,
-    //       'id': 'new-black-polygon',
-    //       strokeWidth: 15,
-    //       strokeColor: '#FF0000',
-    //     }
-    //   ]
-    // });
-  };
 
   updateMarker2 = () => {
     // Treat annotations as immutable and use .map() instead of changing the array
