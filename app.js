@@ -25,7 +25,7 @@ export default class simpleDirections extends Component {
 
   onRegionDidChange = (location) => {
     this.setState({ currentZoom: location.zoomLevel });
-    // console.log('onRegionDidChange', location);
+    this.getDirections(undefined, {latitude: location.latitude, longitude: location.longitude})
   };
   onRegionWillChange = (location) => {
     // console.log('onRegionWillChange', location);
@@ -62,9 +62,7 @@ export default class simpleDirections extends Component {
     });
   }
 
-  getDirections = () => {
-    const from = {latitude: 60.162059, longitude: 24.94};
-    const to = {latitude: 60.152059, longitude: 24.92};
+  getDirections = (from = {latitude: 60.162059, longitude: 24.94}, to = {latitude: 60.152059, longitude: 24.92}) => {
     fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${from.longitude}%2C${from.latitude}%3B${to.longitude}%2C${to.latitude}.json?access_token=pk.eyJ1IjoiaGVucmlrcmEiLCJhIjoiY2o1a3czMjA1MDlzejJwbXhpam1oMTJpMSJ9.TANJvIveftY7gEV8Um3Aew&geometries=geojson`)
       .then((response) => response.json())
       .then(res => {
@@ -85,7 +83,7 @@ export default class simpleDirections extends Component {
               title: 'This is a the lol marker',
               id: 'foo'
             }, 
-          ]
+          ],
         });
       })
       .catch(err => console.log('err', err))
