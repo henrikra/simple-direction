@@ -125,7 +125,7 @@ export default class simpleDirections extends Component {
           annotations: [ 
             ...this.state.annotations,
             {
-              coordinates: res.routes[0].geometry.coordinates.map(coordinate => [coordinate[1], coordinate[0]]),
+              coordinates: res.routes[0].geometry.coordinates.map(coordinates => coordinates.reverse()),
               type: 'polyline',
               id: 'new-black-polygon',
               strokeWidth: 3,
