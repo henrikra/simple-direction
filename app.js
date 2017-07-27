@@ -6,6 +6,7 @@ import {
   View,
   StatusBar,
   Button,
+  Alert,
 } from 'react-native';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
 import NFC, {NfcDataType, NdefRecordType} from "react-native-nfc";
@@ -16,6 +17,7 @@ Mapbox.setAccessToken(accessToken);
 
 NFC.addListener(payload => {
   console.log('payload', payload);
+  Alert.alert('Found card', `${payload.data.description}\nWith id: ${payload.data.id}`);
 });
 
 export default class simpleDirections extends Component {
