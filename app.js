@@ -8,9 +8,15 @@ import {
   Button,
 } from 'react-native';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
+import NFC, {NfcDataType, NdefRecordType} from "react-native-nfc";
 
 const accessToken = 'pk.eyJ1IjoiaGVucmlrcmEiLCJhIjoiY2o1a3czMjA1MDlzejJwbXhpam1oMTJpMSJ9.TANJvIveftY7gEV8Um3Aew';
 Mapbox.setAccessToken(accessToken);
+
+
+NFC.addListener(payload => {
+  console.log('payload', payload);
+});
 
 export default class simpleDirections extends Component {
   state = {
@@ -59,6 +65,16 @@ export default class simpleDirections extends Component {
     this._offlineErrorSubscription = Mapbox.addOfflineErrorListener(error => {
       // console.log('offline error', error);
     });
+  }
+
+  componentDidMount(){
+    this.bindNfcListener();
+  }
+
+  bindNfcListener(){
+    NFC.addListener((payload)=>{
+      console.log(payload);
+    })
   }
 
   getDirections = () => {

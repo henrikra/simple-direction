@@ -3077,6 +3077,10 @@ react-native-mapbox-gl@^5.2.0:
     babel-eslint "^6.1.2"
     lodash "^4.13.1"
 
+react-native-nfc@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-nfc/-/react-native-nfc-0.3.0.tgz#95cac876bdd914a94bd525146143fc2d69255908"
+
 react-native@0.46.4:
   version "0.46.4"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.46.4.tgz#281bbcc165e5c36b4c8eaa868e6768543e811bcb"
