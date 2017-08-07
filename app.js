@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View,
   StatusBar,
   Button,
@@ -10,7 +9,7 @@ import {
   Platform,
 } from 'react-native';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
-import NFC, {NfcDataType, NdefRecordType} from "react-native-nfc";
+import NFC from "react-native-nfc";
 
 const accessToken = 'pk.eyJ1IjoiaGVucmlrcmEiLCJhIjoiY2o1a3czMjA1MDlzejJwbXhpam1oMTJpMSJ9.TANJvIveftY7gEV8Um3Aew';
 Mapbox.setAccessToken(accessToken);
@@ -61,30 +60,6 @@ export default class simpleDirections extends Component {
     });
   }
 
-  componentDidMount() {
-    this.getDirections();
-  }
-
-  updateMarker2 = () => {
-    this.setState({
-      annotations: this.state.annotations.map(annotation => {
-        if (annotation.id !== 'marker2') { return annotation; }
-        return {
-          coordinates: [40.714541341726175,-74.00579452514648],
-          'type': 'point',
-          title: 'New Title!',
-          subtitle: 'New Subtitle',
-          annotationImage: {
-            source: { uri: 'https://cldup.com/7NLZklp8zS.png' },
-            height: 25,
-            width: 25
-          },
-          id: 'marker2'
-        };
-      })
-    });
-  };
-
   render() {
     StatusBar.setHidden(true);
     return (
@@ -113,14 +88,10 @@ export default class simpleDirections extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'stretch'
   },
   map: {
     flex: 1
   },
-  scrollView: {
-    flex: 1
-  }
 });
 
 AppRegistry.registerComponent('simpleDirections', () => simpleDirections);
