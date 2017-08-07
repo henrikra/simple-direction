@@ -27,7 +27,6 @@ export default class simpleDirections extends Component {
       latitude: 60.162059,
       longitude: 24.94
     },
-    zoom: 12,
     annotations: []
   };
 
@@ -35,7 +34,7 @@ export default class simpleDirections extends Component {
     const from = {latitude: 60.162059, longitude: 24.94};
     this._map.getCenterCoordinateZoomLevel(coordinates => {
       fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${from.longitude}%2C${from.latitude}%3B${coordinates.longitude}%2C${coordinates.latitude}.json?access_token=pk.eyJ1IjoiaGVucmlrcmEiLCJhIjoiY2o1a3czMjA1MDlzejJwbXhpam1oMTJpMSJ9.TANJvIveftY7gEV8Um3Aew&geometries=geojson`)
-        .then((response) => response.json())
+        .then(response => response.json())
         .then(res => {
           this.setState({
             annotations: [ 
@@ -68,7 +67,7 @@ export default class simpleDirections extends Component {
           ref={map => { this._map = map; }}
           style={styles.map}
           initialCenterCoordinate={this.state.center}
-          initialZoomLevel={this.state.zoom}
+          initialZoomLevel={12}
           styleURL={Mapbox.mapStyles.dark}
           userTrackingMode={Mapbox.userTrackingMode.none}
           annotations={this.state.annotations}
