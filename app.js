@@ -69,11 +69,6 @@ export default class simpleDirections extends Component {
           style={styles.map}
           initialCenterCoordinate={this.state.center}
           initialZoomLevel={this.state.zoom}
-          initialDirection={0}
-          rotateEnabled={true}
-          scrollEnabled={true}
-          zoomEnabled={true}
-          showsUserLocation={false}
           styleURL={Mapbox.mapStyles.dark}
           userTrackingMode={Mapbox.userTrackingMode.none}
           annotations={this.state.annotations}
