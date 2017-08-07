@@ -27,57 +27,8 @@ export default class simpleDirections extends Component {
       longitude: 24.94
     },
     zoom: 12,
-    userTrackingMode: Mapbox.userTrackingMode.none,
     annotations: []
   };
-
-  onRegionDidChange = (location) => {
-    this.setState({ currentZoom: location.zoomLevel });
-  };
-  onRegionWillChange = (location) => {
-    // console.log('onRegionWillChange', location);
-  };
-  onUpdateUserLocation = (location) => {
-    // console.log('onUpdateUserLocation', location);
-  };
-  onOpenAnnotation = (annotation) => {
-    // console.log('onOpenAnnotation', annotation);
-  };
-  onRightAnnotationTapped = (e) => {
-    // console.log('onRightAnnotationTapped', e);
-  };
-  onLongPress = (location) => {
-    // console.log('onLongPress', location);
-  };
-  onTap = (location) => {
-    // console.log('onTap', location);
-  };
-  onChangeUserTrackingMode = (userTrackingMode) => {
-    this.setState({ userTrackingMode });
-    // console.log('onChangeUserTrackingMode', userTrackingMode);
-  };
-
-  componentWillMount() {
-    this._offlineProgressSubscription = Mapbox.addOfflinePackProgressListener(progress => {
-      // console.log('offline pack progress', progress);
-    });
-    this._offlineMaxTilesSubscription = Mapbox.addOfflineMaxAllowedTilesListener(tiles => {
-      // console.log('offline max allowed tiles', tiles);
-    });
-    this._offlineErrorSubscription = Mapbox.addOfflineErrorListener(error => {
-      // console.log('offline error', error);
-    });
-  }
-
-  componentDidMount(){
-    this.bindNfcListener();
-  }
-
-  bindNfcListener(){
-    NFC.addListener((payload)=>{
-      console.log(payload);
-    })
-  }
 
   getDirections = () => {
     const from = {latitude: 60.162059, longitude: 24.94};
@@ -112,14 +63,7 @@ export default class simpleDirections extends Component {
     this.getDirections();
   }
 
-  componentWillUnmount() {
-    this._offlineProgressSubscription.remove();
-    this._offlineMaxTilesSubscription.remove();
-    this._offlineErrorSubscription.remove();
-  }
-
   updateMarker2 = () => {
-    // Treat annotations as immutable and use .map() instead of changing the array
     this.setState({
       annotations: this.state.annotations.map(annotation => {
         if (annotation.id !== 'marker2') { return annotation; }
@@ -139,12 +83,6 @@ export default class simpleDirections extends Component {
     });
   };
 
-  removeMarker2 = () => {
-    this.setState({
-      annotations: this.state.annotations.filter(a => a.id !== 'marker2')
-    });
-  };
-
   render() {
     StatusBar.setHidden(true);
     return (
@@ -160,17 +98,9 @@ export default class simpleDirections extends Component {
           zoomEnabled={true}
           showsUserLocation={false}
           styleURL={Mapbox.mapStyles.dark}
-          userTrackingMode={this.state.userTrackingMode}
+          userTrackingMode={Mapbox.userTrackingMode.none}
           annotations={this.state.annotations}
           annotationsAreImmutable
-          onChangeUserTrackingMode={this.onChangeUserTrackingMode}
-          onRegionDidChange={this.onRegionDidChange}
-          onRegionWillChange={this.onRegionWillChange}
-          onOpenAnnotation={this.onOpenAnnotation}
-          onRightAnnotationTapped={this.onRightAnnotationTapped}
-          onUpdateUserLocation={this.onUpdateUserLocation}
-          onLongPress={this.onLongPress}
-          onTap={this.onTap}
         />
         <Button title="Get directions" onPress={this.getDirections} />
       </View>
