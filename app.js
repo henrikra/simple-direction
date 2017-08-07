@@ -14,7 +14,7 @@ import NFC from "react-native-nfc";
 const accessToken = 'pk.eyJ1IjoiaGVucmlrcmEiLCJhIjoiY2o1a3czMjA1MDlzejJwbXhpam1oMTJpMSJ9.TANJvIveftY7gEV8Um3Aew';
 Mapbox.setAccessToken(accessToken);
 
-if (Platform.Os === 'android') {
+if (Platform.OS === 'android') {
   NFC.addListener(payload => {
     console.log('payload', payload);
     Alert.alert('Found card', `${payload.data.description}\nWith id: ${payload.data.id}`);
